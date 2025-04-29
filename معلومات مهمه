@@ -1,0 +1,31 @@
+إزاي تجيب موقع المستخدم من الـ IP 
+
+composer require stevebauman/location
+
+use App\Http\Controllers\UserController;
+
+Route::get('/user', [UserController::class, 'index']);
+
+
+ public function index(Request $request)
+    {
+        $ip = $request->ip(); // أو IP ثابت للتجربة
+        // $ip = '162.159.24.227';
+        $data = Location::get($ip);
+        dd($data);
+    }
+
+
+📦 البيانات اللي هترجعلك:
+
+    الدولة: countryName
+
+    المدينة: cityName
+
+    الرمز البريدي: postalCode
+
+    خط العرض: latitude
+
+    خط الطول: longitude
+
+    اسم الشركة: regionName أو countryCode
